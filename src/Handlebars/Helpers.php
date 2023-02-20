@@ -38,6 +38,7 @@ class Helpers
         "with",
         "unless",
         "bindAttr",
+        "ifequal",
         "upper",                // Put all chars in uppercase
         "lower",                // Put all chars in lowercase
         "capitalize",           // Capitalize just the first word
@@ -735,7 +736,29 @@ class Helpers
         return $this->tpl["DEFINE"][$args]->render($context);
     }
 
+    public function helperIfequal($template, $context, $args, $source)
+    {
+        $parsed_args = parseArgs($context, $args);
+        if (empty($parsed_args) || count($parsed_args) < 2) {
+            return '';
+        }
 
+        $condition = ($context->get($parsed_args[0]) == $context->get($parsed_args[1]));
+
+        if ($condition) {
+            $template->setStopToken('else');
+            $buffer = $template->render($context);
+            $template->setStopToken(false);
+        } else {
+            $template->setStopToken('else');
+            $template->discard();
+            $template->setStopToken(false);
+            $buffer = $template->render($context);
+        }
+
+        return $buffer;
+    }
+    
     /**
      * Change underscore helper name to CamelCase
      *
