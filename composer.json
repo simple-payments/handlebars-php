@@ -1,7 +1,7 @@
 {
-    "name": "salesforce/handlebars-php",
+    "name": "simple-payments/handlebars-php",
     "description": "Handlebars processor for php",
-    "homepage": "http://www.github.com/salesforce/handlebars-php",
+    "homepage": "https://github.com/simple-payments/handlebars-php",
     "keywords": ["templating", "mustache", "handlebars"],
     "type": "library",
     "license": "MIT",
